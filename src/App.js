@@ -4,7 +4,7 @@ import Person from './Person/Person';
 
 class App extends Component {
   state = {
-    people: [
+    persons: [
       { name: 'John Lennon', age: 40 },
       { name: 'David Bowie', age: 69 }
     ],
@@ -15,7 +15,7 @@ class App extends Component {
 switchNameHandler = (newName) => {
   console.log('Hey hey!')
   this.setState({
-    people: [
+    persons: [
       { name: newName, age: 100 },
       { name: 'Bob Dylan', age: 77 }
     ]
@@ -24,7 +24,7 @@ switchNameHandler = (newName) => {
 
 nameChangeHandler = (e) => {
   this.setState({
-    people: [
+    persons: [
       { name: 'Charlie Parker', age: 34 },
       { name: e.target.value, age: 66 }
     ]
@@ -51,14 +51,12 @@ togglePersonsHandler = () => {
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person name={this.state.people[0].name}
-            age={this.state.people[0].age}
-            click={this.switchNameHandler.bind(this, 'George Harrison')}
-            changed={this.nameChangeHandler}
-          />
-          <Person name={this.state.people[1].name} age={this.state.people[1].age} />
-          <Person name="Jerry Garcia" age="53" />
-          <Person name="Miles Davis" age="65">Hobbies: Being awesome</Person>
+
+          {this.state.persons.map(person => {
+              return <Person name={person.name} age={person.age}/>
+          })}
+
+
           <Person />
 
         </div>
