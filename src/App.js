@@ -44,7 +44,8 @@ togglePersonsHandler = () => {
   render() {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -66,13 +67,12 @@ togglePersonsHandler = () => {
                 changed={(e) => this.nameChangeHandler(e, person.id)}
 
                 />
-
           })}
-
-          <Person />
-
         </div>
-      )
+      );
+
+      style.backgroundColor = '#add8e6';
+      style.color = "blue"; 
     }
 
     return (
