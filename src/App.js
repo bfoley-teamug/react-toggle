@@ -6,7 +6,9 @@ class App extends Component {
   state = {
     persons: [
       { id: 'a', name: 'John Lennon', age: 40 },
-      { id: 'b', name: 'David Bowie', age: 69 }
+      { id: 'b', name: 'David Bowie', age: 69 },
+      { id: 'c', name: 'Bob Dylan', age: 73 },
+      { id: 'd', name: 'Charlie Parker', age: 34 }
     ],
     otherState: "let's dance put on your red shoes and dance the blues",
     showPersons: false
@@ -72,13 +74,23 @@ togglePersonsHandler = () => {
       );
 
       style.backgroundColor = '#add8e6';
-      style.color = "blue"; 
+      style.color = "blue";
+    }
+
+    const cssClasses = [];
+
+    if(this.state.persons.length <= 2) {
+      cssClasses.push('blue')
+    }
+
+    if(this.state.persons.length <= 1) {
+      cssClasses.push('bold')
     }
 
     return (
       <div className="App">
         <h1>Hi, I am a React App. </h1>
-        <p>Yes, hello, and good morning</p>
+        <p className={cssClasses.join(' ')}>Yes, hello, and good morning</p>
          <button
           style={style}
           onClick={this.togglePersonsHandler}>Toggle Name</button>
