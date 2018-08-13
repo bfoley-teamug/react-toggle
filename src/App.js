@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -13,6 +14,8 @@ class App extends Component {
     otherState: "let's dance put on your red shoes and dance the blues",
     showPersons: false
   }
+
+
 
 nameChangeHandler = (e, id) => {
   const personIndex = this.state.persons.findIndex(p => {
@@ -51,7 +54,11 @@ togglePersonsHandler = () => {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'orange'
+      }
     }
 
     let persons = null;
@@ -75,6 +82,10 @@ togglePersonsHandler = () => {
 
       style.backgroundColor = '#add8e6';
       style.color = "blue";
+      style[':hover'] = {
+        backgroundColor: 'lightred',
+        color: 'purple'
+      }
     }
 
     const cssClasses = [];
@@ -86,8 +97,11 @@ togglePersonsHandler = () => {
     if(this.state.persons.length <= 1) {
       cssClasses.push('bold')
     }
-
+ 
     return (
+
+      <StyleRoot>
+
       <div className="App">
         <h1>Hi, I am a React App. </h1>
         <p className={cssClasses.join(' ')}>Yes, hello, and good morning</p>
@@ -98,8 +112,11 @@ togglePersonsHandler = () => {
         {persons}
 
       </div>
+
+      </StyleRoot>
+
     );
   }
 }
 
-export default App;
+export default Radium(App);
